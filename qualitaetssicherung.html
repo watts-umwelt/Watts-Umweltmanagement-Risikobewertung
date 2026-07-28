@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualitätssicherung – Watts Umweltberatung</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav class="nav">
+    <a href="index.html" class="brand">Watts <span>Umweltberatung</span></a>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html#leistungen">Leistungen</a></li>
+      <li><a href="qualitaetssicherung.html">Qualitätssicherung</a></li>
+      <li><a href="index.html#kontakt">Kontakt</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+  <div class="legal">
+    <h1>Qualitätssicherung</h1>
+    <p>Fachliche Qualifikation und ein dokumentierter Beratungsprozess.</p>
+
+    <h2>Qualifikation</h2>
+    <ul class="credentials">
+      <li><strong>M.Sc. Chemieingenieurwesen</strong>University of Nottingham</li>
+      <li><strong>Diplom in Chemie</strong>Universidad Nacional de Colombia</li>
+      <li><strong>Zertifizierte Umweltmanagerin</strong>ISO 14001, EMAS — alfatraining, 2026</li>
+      <li><strong>Zertifizierte Umweltschutzbeauftragte</strong>alfatraining, 2026</li>
+    </ul>
+
+    <h2>Beratungsprozess</h2>
+    <ol class="process">
+      <li><strong>Auftragsklärung.</strong> Erstgespräch, transparentes schriftliches Angebot.</li>
+      <li><strong>Ist-Analyse.</strong> Systematische Bestandsaufnahme vor Ort oder anhand Dokumentation.</li>
+      <li><strong>Ausarbeitung.</strong> Normkonformer, wissenschaftlich fundierter Maßnahmenkatalog.</li>
+      <li><strong>Abschluss & Bericht.</strong> Nachvollziehbarer Beratungsbericht mit konkreten Empfehlungen.</li>
+    </ol>
+	<h2> Dokumenten- und Datenschutzmanagement</h2>
+	
+<p>●Sichere Speicherung und Verarbeitung vertraulicher Kundendaten gemäß DSGVO.
+●	Versionskontrolle aller erstellten Berichte und Fachgutachten.
+●	Ausschließlich lokal gehostete, DSGVO-konforme Datenverarbeitung ohne Anbindung an externe Cloud-Dienste; es werden keine externen Cloud-APIs zur Verarbeitung vertraulicher Kundendaten genutzt, um das Risiko von Datenlecks und Verstößen gegen Geheimhaltungspflichten auszuschließen.
+●	Einsatz eines mobilen Notebooks ausschließlich für Notizerfassung und Dokumentensichtung während kurzzeitiger Vor-Ort-Termine, mit gesicherter Anbindung an das heimische Hauptsystem. </p>
+
+	<h2>Kundenfeedback & Evaluierung</h2>
+<p>●	Nach Abschluss jedes Beratungsprojekts wird dem Kunden ein strukturierter Feedbackbogen zur Überprüfung der Beratungszufriedenheit übergeben.
+●	Regelmäßige jährliche Überprüfung (Management-Bewertung) der eigenen Beratungsprozesse und kontinuierliche Verbesserung auf dieser Grundlage. </p>
+
+<h2>Unabhängigkeit der Beratungstätigkeit</h2>
+
+<p>Die Beratungstätigkeit wird eigenverantwortlich, unabhängig und in eigenem Namen ausgeübt. Der überwiegende Teil der Geschäftstätigkeit (>50%) entfällt auf entgeltliche Unternehmensberatung im Bereich Umweltmanagement und Umweltrecht.</p>
+
+    <h2>Haftung & Risikomanagement</h2>
+    <p>Die Beratungstätigkeit erfolgt unter angemessenem Haftungs- und Risikomanagement. Zur Absicherung möglicher Vermögens- und Haftungsrisiken, insbesondere bei Beratungsfehlern, Datenschutzvorfällen oder rechtlichen Auseinandersetzungen, wird eine geeignete Berufshaftpflicht-/Vermögensschadenhaftpflichtversicherung unterhalten. Soweit erforderlich, werden auch weitere sachlich passende Versicherungen geprüft und abgeschlossen.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Beatriz Watts — Umweltberatung, Hamburg</span>
+    <ul class="footer-links">
+      <li><a href="impressum.html">Impressum</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+</script>
+</body>
+</html>
