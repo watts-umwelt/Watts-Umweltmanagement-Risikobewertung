@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Rentabilitätsprognose — Beatriz Amanda Watts Umweltberatung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F3EE;
+    --ink:#1E2B24;
+    --moss:#48664F;
+    --moss-dim:#7C9382;
+    --ochre:#A9793F;
+    --line:#CBD1C6;
+    --line-soft:#DEE2D9;
+    --white:#FBFBF9;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:64px 28px 100px;
+  }
+  header{
+    border-bottom:1px solid var(--line);
+    padding-bottom:32px;
+    margin-bottom:40px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--moss);
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(28px, 4vw, 40px);
+    line-height:1.15;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    max-width:60ch;
+    color:#3C4B41;
+    font-size:15.5px;
+    margin:0;
+  }
+  .meta{
+    display:flex;
+    gap:32px;
+    margin-top:24px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--moss-dim);
+  }
+  .meta div span{ display:block; color:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-size:14px; margin-top:2px;}
+
+  /* growth path — signature element */
+  .growth{
+    margin:44px 0 56px;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:28px 28px 20px;
+  }
+  .growth h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:18px;
+    margin:0 0 4px;
+  }
+  .growth p.note{
+    font-size:13px;
+    color:var(--moss-dim);
+    margin:0 0 8px;
+  }
+  svg{ display:block; width:100%; height:auto; }
+  .pt-label{ font-family:'IBM Plex Mono', monospace; font-size:12px; fill:var(--ink); }
+  .pt-value{ font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:15px; fill:var(--ink); }
+  .axis-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; fill:var(--moss-dim); }
+
+  section.year{
+    margin-bottom:40px;
+    border:1px solid var(--line);
+    background:var(--white);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .year-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    padding:20px 24px;
+    border-bottom:1px solid var(--line-soft);
+    background:#EDEFE8;
+  }
+  .year-head h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:20px;
+    margin:0;
+  }
+  .year-head .phase{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--moss);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .year-body{ padding:20px 24px 24px; }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+  }
+  th, td{
+    text-align:left;
+    padding:9px 10px;
+    border-bottom:1px solid var(--line-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  th{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--moss-dim);
+    font-weight:500;
+  }
+  td.num, th.num{ text-align:right; font-variant-numeric: tabular-nums; }
+  tr.total td{ border-top:2px solid var(--ink); border-bottom:none; font-weight:600; padding-top:12px; }
+  .assumptions{
+    margin-top:14px;
+    font-size:13px;
+    color:#3C4B41;
+  }
+  .assumptions li{ margin-bottom:4px; }
+
+  .funding{
+    margin-top:56px;
+    border:1px solid var(--ochre);
+    background:#F7F0E5;
+    border-radius:2px;
+    padding:24px 28px;
+  }
+  .funding h2{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:19px;
+    margin:0 0 12px;
+    color:#6B4A21;
+  }
+  .funding-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:12px;
+  }
+  @media (max-width:640px){ .funding-grid{ grid-template-columns:1fr; } }
+  .funding-grid h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin:0 0 8px;
+    color:#6B4A21;
+  }
+  .funding-grid p{ margin:0; font-size:13.5px; color:#4A3A20; }
+
+  footer{
+    margin-top:56px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--moss-dim);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Rentabilitätsvorschau · Anlage zum Businessplan</div>
+    <h1>Beatriz Amanda Watts Umweltberatung — 3-Jahres-Prognose</h1>
+    <p class="subtitle">Fachberaterin für Umweltmanagement &amp; Risikobewertung. Naturwissenschaftlich-technische Bewertung von Umweltrisiken, Unterstützung beim Aufbau und der Pflege von Umweltmanagementsystemen nach ISO 14001 sowie umweltrechtliche Fachberatung.</p>
+    <div class="meta">
+      <div>Sitz<span>Hamburg</span></div>
+      <div>Rechtsform<span>Freiberuflerin (Einzelunternehmen)</span></div>
+      <div>Steuernummer<span>50/260/06351</span></div>
+      <div>USt<span>befreit gem. § 19 UStG</span></div>
+    </div>
+  </header>
+
+  <div class="growth">
+    <h2>Umsatzentwicklung im Aufbau</h2>
+    <p class="note">Prognostizierter Jahresumsatz, Jahr 1–3 — konservative Schätzung auf Basis der unten aufgeführten Leistungspakete</p>
+    <svg viewBox="0 0 720 260" preserveAspectRatio="xMidYMid meet">
+      <line x1="70" y1="220" x2="700" y2="220" stroke="#CBD1C6" stroke-width="1"/>
+      <line x1="70" y1="30" x2="70" y2="220" stroke="#CBD1C6" stroke-width="1"/>
+      <text x="60" y="222" text-anchor="end" class="axis-label">0 €</text>
+      <text x="60" y="49" text-anchor="end" class="axis-label">50.000 €</text>
+      <polyline points="90,163 390,114 670,43" fill="none" stroke="#48664F" stroke-width="2.5"/>
+      <circle cx="90" cy="163" r="4.5" fill="#48664F"/>
+      <circle cx="390" cy="114" r="4.5" fill="#48664F"/>
+      <circle cx="670" cy="43" r="4.5" fill="#A9793F"/>
+      <text x="90" y="148" text-anchor="middle" class="pt-value">15.000 €</text>
+      <text x="90" y="240" text-anchor="middle" class="pt-label">Jahr 1</text>
+      <text x="390" y="99" text-anchor="middle" class="pt-value">27.750 €</text>
+      <text x="390" y="240" text-anchor="middle" class="pt-label">Jahr 2</text>
+      <text x="670" y="28" text-anchor="middle" class="pt-value">46.500 €</text>
+      <text x="670" y="240" text-anchor="middle" class="pt-label">Jahr 3</text>
+    </svg>
+  </div>
+
+  <section class="year">
+    <div class="year-head">
+      <h3>Jahr 1</h3>
+      <span class="phase">Aufbauphase · Referenzprojekte</span>
+    </div>
+    <div class="year-body">
+      <table>
+        <thead>
+          <tr><th>Leistungspaket</th><th class="num">Menge</th><th class="num">Satz</th><th class="num">Umsatz</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Einführungsprojekte (Stundenbasis, reduzierter Einstiegssatz)</td><td class="num">~180 h</td><td class="num">70 €/h</td><td class="num">12.600 €</td></tr>
+          <tr><td>Kurz-Audit / Gap-Analyse (Tagessatz, Einführungskondition)</td><td class="num">3 Tage</td><td class="num">800 €</td><td class="num">2.400 €</td></tr>
+          <tr class="total"><td colspan="3">Summe Jahr 1</td><td class="num">15.000 €</td></tr>
+        </tbody>
+      </table>
+      <ul class="assumptions">
+        <li>Ziel: 2–3 Referenzprojekte, um Bewertungen und Fallbeispiele für die Preisentwicklung ab Jahr 2 zu sichern.</li>
+        <li>Arbeitsumfang: ca. 18 h/Monat bzw. 4–5 h/Woche — vereinbar mit gleichzeitiger Arbeitsuche.</li>
+        <li>Betriebsausgaben (Versicherung, Software, Domain, Fahrtkosten): ca. 1.500–3.000 €, gedeckt aus dem Umsatz.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="year">
+    <div class="year-head">
+      <h3>Jahr 2</h3>
+      <span class="phase">Konsolidierung · Übergang zum Regelhonorar</span>
+    </div>
+    <div class="year-body">
+      <table>
+        <thead>
+          <tr><th>Leistungspaket</th><th class="num">Menge</th><th class="num">Satz</th><th class="num">Umsatz</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Beratung / Audits (Tagessatz, Regelhonorar)</td><td class="num">15 Tage</td><td class="num">950 €</td><td class="num">14.250 €</td></tr>
+          <tr><td>Follow-up / kleinerer Aufwand (Stundensatz)</td><td class="num">~112,5 h</td><td class="num">120 €/h</td><td class="num">13.500 €</td></tr>
+          <tr class="total"><td colspan="3">Summe Jahr 2</td><td class="num">27.750 €</td></tr>
+        </tbody>
+      </table>
+      <ul class="assumptions">
+        <li>Übergang von Einführungskonditionen zu regulären Sätzen (Tagessatz 950 €, Stundensatz 120 €) auf Basis der in Jahr 1 gewonnenen Referenzen.</li>
+        <li>Arbeitsumfang: ca. 220 h-Äquivalent/Jahr (~18 h/Woche im Schnitt über projektreiche Monate).</li>
+        <li>BAFA-Listung (Beraterliste) als zusätzlicher Akquisekanal für KMU-Mandate mit Förderfähigkeit.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="year">
+    <div class="year-head">
+      <h3>Jahr 3</h3>
+      <span class="phase">Stabilisierung · Tragfähiger Regelbetrieb</span>
+    </div>
+    <div class="year-body">
+      <table>
+        <thead>
+          <tr><th>Leistungspaket</th><th class="num">Menge</th><th class="num">Satz</th><th class="num">Umsatz</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Beratung / Audits (Tagessatz)</td><td class="num">30 Tage</td><td class="num">950 €</td><td class="num">28.500 €</td></tr>
+          <tr><td>Follow-up / kleinerer Aufwand (Stundensatz)</td><td class="num">150 h</td><td class="num">120 €/h</td><td class="num">18.000 €</td></tr>
+          <tr class="total"><td colspan="3">Summe Jahr 3</td><td class="num">46.500 €</td></tr>
+        </tbody>
+      </table>
+      <ul class="assumptions">
+        <li>Wiederkehrende Mandate (jährliche Re-Audits, laufende Rechtskataster-Pflege) reduzieren den Akquiseaufwand gegenüber Jahr 1–2.</li>
+        <li>Arbeitsumfang: ca. 390 h-Äquivalent/Jahr — weiterhin unterhalb einer Vollzeitauslastung, mit Kapazität für weiteres Wachstum.</li>
+        <li>Diese Schätzung ist konservativ gehalten; sie unterstellt keine Umsatzsteigerung durch zusätzliche Kunden über die genannten Pakete hinaus.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="funding">
+    <h2>Bezug zu § 16b und § 16c SGB II</h2>
+    <div class="funding-grid">
+      <div>
+        <h4>§ 16b · Einstiegsgeld</h4>
+        <p>Deckt den Lebensunterhalt während der Aufbauphase (Jahr 1), in der der Beratungsumsatz allein noch nicht existenzsichernd ist. Die o. g. Umsatzziele sind daher als Tragfähigkeits- und Glaubwürdigkeitsnachweis zu verstehen, nicht als alleinige Existenzgrundlage im ersten Jahr.</p>
+      </div>
+      <div>
+        <h4>§ 16c · Einmalige Sachkapitalhilfe</h4>
+        <p>Deckt die einmalige Anschaffung der IT-Infrastruktur (Workstation, mobiles Notebook) vor Aufnahme der Beratungstätigkeit — Voraussetzung für DSGVO-konforme, lokal gehostete Datenverarbeitung ohne externe Cloud-Anbindung. Antragstellung erfolgt vor jeder Anschaffung.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Beatriz Amanda Watts Umweltberatung — watts-umwelt.de</span>
+    <span>Interne Anlage · nicht verlinkt</span>
+  </footer>
+
+</div>
+</body>
+</html>
