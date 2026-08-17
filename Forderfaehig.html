@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAFA-Fördercheck & Kontakt - Beatriz Watts</title>
+    <style>
+        :root {
+            --primary: #1b4332;
+            --primary-hover: #2d6a4f;
+            --accent: #d8f3dc;
+            --bg: #f8f9fa;
+            --text: #212529;
+            --border: #ced4da;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .form-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.15);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+        }
+
+        .result-box {
+            display: none;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid #b7e4c7;
+        }
+
+        button.btn-submit {
+            width: 100%;
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button.btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .privacy-note {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <h2>Fördercheck & Anfragen</h2>
+    <p class="subtitle">Prüfen Sie unverbindlich Ihre BAFA-Förderfähigkeit oder fragen Sie individuelle Unterstützung an.</p>
+	<p class="privacy-note"> Haftungsausschluss: Die Förderfähigkeit richtet sich nach dem Unternehmensprofil, und die formelle Antragstellung erfolgt über die BAFA-Antragsplattform. Die folgenden Angaben dienen lediglich der Überprüfung und erheben keinen Anspruch auf rechtliche Verbindlichkeit.
+Reine oder überwiegend rechts-, versicherungs- oder steuerberatende Tätigkeiten sowie gutachterliche Stellungnahmen sind ausdrücklich nicht förderfähig.p>
+
+    <form id="contactForm" action="beatriz.watts@watts-umwelt.de" method="post" enctype="text/plain">
+        
+        <!-- Step 1: BAFA Eligibility Quick Check -->
+        <div class="form-group">
+            <label for="companySize">Unternehmensgröße (Anzahl Mitarbeiter)</label>
+            <select id="companySize" name="Mitarbeiteranzahl" onchange="checkEligibility()" required>
+                <option value="">-- Bitte wählen --</option>
+                <option value="micro">Unter 10 Mitarbeiter (KMU)</option>
+                <option value="sme">10 bis 249 Mitarbeiter (KMU)</option>
+                <option value="large">250 oder mehr Mitarbeiter</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="turnover">Jahresumsatz / Bilanzsumme</label>
+            <select id="turnover" name="Jahresumsatz" onchange="checkEligibility()" required>
+                <option value="">-- Bitte wählen --</option>
+                <option value="eligible">≤ 50 Mio. € Umsatz / ≤ 43 Mio. € Bilanz</option>
+                <option value="exceeded">> 50 Mio. € Umsatz</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Unternehmenssitz / Bundesland</label>
+            <select id="location" name="Bundesland" onchange="checkEligibility()" required>
+                <option value="">-- Bitte wählen --</option>
+                <option value="new">Neue Bundesländer (inkl. Leipzig, exkl. Berlin)</option>
+                <option value="old">Alte Bundesländer / Berlin</option>
+            </select>
+        </div>
+
+        <!-- Dynamic Eligibility Output Box -->
+        <div id="eligibilityResult" class="result-box"></div>
+
+        <!-- Step 2: Service Selection -->
+        <div class="form-group">
+            <label>Gewünschte Leistung / Modul</label>
+            <div class="checkbox-group">
+                <label class="checkbox-option">
+                    <input type="checkbox" name="Leistung[]" value="BAFA-Strategieberatung">
+                    BAFA-förderfähige Umwelt- &amp; Compliance-Strategieberatung
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="Leistung[]" value="QM-Handbuch-Entwurf">
+                    Entwurf QM- / Umweltmanagementsystem-Handbuch (ISO 14001)
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="Leistung[]" value="Audit-Vorbereitung">
+                    Fachliche Begleitung &amp; Vorbereitung auf Audits
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" name="Leistung[]" value="Inhouse-Schulung">
+                    Inhouse-Präsentation / Mitarbeiterschulung
+                </label>
+            </div>
+        </div>
+
+        <!-- Step 3: Contact Details -->
+        <div class="form-group">
+            <label for="companyName">Firma / Organisation</label>
+            <input type="text" id="companyName" name="Firma" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contactName">Ansprechpartner/in</label>
+            <input type="text" id="contactName" name="Name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-Mail-Adresse</label>
+            <input type="email" id="email" name="Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Ihre Nachricht / Anliegen (optional)</label>
+            <textarea id="message" name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihre aktuellen Anforderungen..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="checkbox-option">
+                <input type="checkbox" required>
+                Ich stimme der Verarbeitung meiner Daten gemäß DSGVO zu.
+            </label>
+        </div>
+
+        <button type="submit" class="btn-submit">Anfrage Absenden</button>
+
+        <p class="privacy-note">Hinweis: Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.</p>
+    </form>
+</div>
+
+<script>
+    function checkEligibility() {
+        const size = document.getElementById('companySize').value;
+        const turnover = document.getElementById('turnover').value;
+        const location = document.getElementById('location').value;
+        const resultBox = document.getElementById('eligibilityResult');
+
+        if (size && turnover && location) {
+            resultBox.style.display = 'block';
+            
+            if (size === 'large' || turnover === 'exceeded') {
+                resultBox.innerHTML = "Hinweis: Ihr Unternehmen liegt über den KMU-Schwellenwerten für Standard-BAFA-Förderungen. Eine direkte freiberufliche Fachberatung ist weiterhin uneingeschränkt möglich.";
+                resultBox.style.backgroundColor = '#fff3cd';
+                resultBox.style.borderColor = '#ffe69c';
+                resultBox.style.color = '#664d03';
+            } else if (location === 'new') {
+                resultBox.innerHTML = "Ergebnis: Ihr Unternehmen ist voraussichtlich für eine BAFA-Förderung von bis zu 80 % (max. 2.700 €) qualifiziert.";
+                resultBox.style.backgroundColor = '#d8f3dc';
+                resultBox.style.borderColor = '#b7e4c7';
+                resultBox.style.color = '#1b4332';
+            } else {
+                resultBox.innerHTML = "Ergebnis: Ihr Unternehmen ist voraussichtlich für eine BAFA-Förderung von bis zu 50 % (max. 1.750 €) qualifiziert.";
+                resultBox.style.backgroundColor = '#d8f3dc';
+                resultBox.style.borderColor = '#b7e4c7';
+                resultBox.style.color = '#1b4332';
+            }
+        } else {
+            resultBox.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
