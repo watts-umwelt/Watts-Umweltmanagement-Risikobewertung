@@ -340,3 +340,7 @@ footer {
   font-size: 0.82rem;
   color: var(--text-muted);
 }
+.privacy-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
