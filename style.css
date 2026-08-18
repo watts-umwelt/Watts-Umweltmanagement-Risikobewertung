@@ -303,8 +303,6 @@ section.alt .card { background: var(--paper); }
 }
 .contact-box h2 { font-family: var(--font-display); margin: 0 0 8px; font-size: 1.7rem; }
 .contact-box p { color: #C9C6BC; margin: 0; }
-.contact-box .btn-primary { background: var(--moss); }
-.contact-box .btn-primary:hover { background: #4a7a6e; }
 
 /* Footer */
 footer {
